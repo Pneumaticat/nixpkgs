@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ foomatic-filters bc unzip ghostscript systemd vim ];
 
-  patches = [ ./no-hardcode-fw.diff ];
+  patches = [ ./no-hardcode-fw.diff ./hbpl1.patch ./foo2hbpl1.c.print-quality.patch ];
 
   makeFlags = [
     "PREFIX=$(out)"
