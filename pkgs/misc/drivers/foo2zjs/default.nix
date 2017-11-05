@@ -1,11 +1,11 @@
 { stdenv, fetchurl, foomatic-filters, bc, unzip, ghostscript, systemd, vim }:
 
 stdenv.mkDerivation rec {
-  name = "foo2zjs-20110210";
+  name = "foo2zjs-20160901";
 
   src = fetchurl {
     url = "http://www.loegria.net/mirrors/foo2zjs/${name}.tar.gz";
-    sha256 = "0vss8gdbbgxr694xw48rys2qflbnb4sp4gdb1v6z4m9ab97hs5yk";
+    sha256 = "0k2sva2xmqv4scl2q6v1rg76m52yigr6p2l5mljg982ygsi27fb2";
   };
 
   buildInputs = [ foomatic-filters bc unzip ghostscript systemd vim ];
