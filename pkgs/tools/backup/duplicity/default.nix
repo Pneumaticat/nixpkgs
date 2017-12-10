@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, python2Packages, librsync, ncftp, gnupg, rsync, makeWrapper }:
+{ stdenv, fetchurl, python2Packages, librsync, ncftp, gnupg, rsync, makeWrapper, par2cmdline }:
 
 python2Packages.buildPythonApplication rec {
   name = "duplicity-${version}";
@@ -12,7 +12,7 @@ python2Packages.buildPythonApplication rec {
   buildInputs = [ librsync makeWrapper python2Packages.wrapPython ];
   propagatedBuildInputs = with python2Packages; [
     boto cffi cryptography ecdsa enum idna pygobject3
-    ipaddress lockfile paramiko pyasn1 pycrypto six
+    ipaddress lockfile paramiko pyasn1 pycrypto six pexpect
   ];
   checkInputs = with python2Packages; [ lockfile mock pexpect ];
 
@@ -21,7 +21,7 @@ python2Packages.buildPythonApplication rec {
 
   postInstall = ''
     wrapProgram $out/bin/duplicity \
-      --prefix PATH : "${stdenv.lib.makeBinPath [ gnupg ncftp rsync ]}"
+      --prefix PATH : "${stdenv.lib.makeBinPath [ gnupg ncftp rsync par2cmdline ]}"
 
     wrapPythonPrograms
   '';
